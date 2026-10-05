@@ -14,7 +14,6 @@
 @property --c1{syntax:"<color>";inherits:true;initial-value:#2F6BFF}
 @property --c2{syntax:"<color>";inherits:true;initial-value:#0B1E5B}
 @property --c3{syntax:"<color>";inherits:true;initial-value:#FFFFFF}
-@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
 
 :root{
   --navy:#0B1E5B;
@@ -35,7 +34,7 @@ html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 .lenis.lenis-stopped{overflow:hidden}
-body{background:var(--base);color:var(--ice);font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+body{background:#03060F;color:var(--ice);font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;
   transition:--base 1.4s ease,--c1 1.4s ease,--c2 1.4s ease,--c3 1.4s ease}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -56,10 +55,7 @@ button{font:inherit;color:inherit}
 @keyframes roam1{0%{transform:translate3d(0,0,0)}33%{transform:translate3d(9vw,-7vh,0)}66%{transform:translate3d(-7vw,6vh,0)}100%{transform:translate3d(5vw,9vh,0)}}
 @keyframes roam2{0%{transform:translate3d(0,0,0)}50%{transform:translate3d(-10vw,8vh,0)}100%{transform:translate3d(8vw,-6vh,0)}}
 @keyframes roam3{0%{transform:translate3d(0,0,0)}25%{transform:translate3d(-12vw,10vh,0)}60%{transform:translate3d(10vw,4vh,0)}100%{transform:translate3d(-4vw,-10vh,0)}}
-.aurora{position:absolute;left:50%;top:50%;width:140vmax;height:140vmax;margin:-70vmax;border-radius:50%;opacity:.16;will-change:transform;
-  background:conic-gradient(from 0deg,transparent 0deg,#2F6BFF 40deg,transparent 90deg,#FFFFFF 150deg,transparent 200deg,#0B1E5B 260deg,transparent 320deg);
-  -webkit-mask:radial-gradient(circle,#000 0%,transparent 60%);mask:radial-gradient(circle,#000 0%,transparent 60%);animation:aurora 60s linear infinite}
-@keyframes aurora{to{transform:rotate(360deg)}}
+
 .grid{position:fixed;inset:0;z-index:-1;pointer-events:none;
   background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
   background-size:64px 64px;-webkit-mask-image:radial-gradient(70% 60% at 50% 30%,#000 10%,transparent 75%);mask-image:radial-gradient(70% 60% at 50% 30%,#000 10%,transparent 75%);opacity:.3}
@@ -104,7 +100,7 @@ h2{font-size:clamp(30px,4.4vw,52px);max-width:20ch}
 
 /* ---------- Nav ---------- */
 .nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;padding:16px 0;transition:background .5s,border-color .5s,transform .6s var(--ease);border-bottom:1px solid transparent}
-.nav.solid{background:rgba(3,6,15,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-color:var(--line)}
+.nav.solid{background:rgba(3,6,15,.9);border-color:var(--line)}
 .nav.hide{transform:translateY(-110%)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .logo{font-family:"Unbounded";font-weight:700;font-size:19px;letter-spacing:.02em;display:flex;align-items:center;gap:8px}
@@ -136,11 +132,11 @@ h2{font-size:clamp(30px,4.4vw,52px);max-width:20ch}
   background:radial-gradient(60% 50% at 50% 50%,#0B1E5B 55%,#040A20 100%);
   box-shadow:inset 0 2px 0 rgba(255,255,255,.75),inset 0 40px 90px -20px rgba(90,141,255,.7)}
 .planet .rim{position:absolute;left:0;right:0;top:0;height:200%;border-radius:50%;
-  background:conic-gradient(from var(--a),transparent 0deg,transparent 30deg,#fff 70deg,#5A8DFF 105deg,transparent 150deg,transparent 360deg);
+  background:conic-gradient(from 0deg,transparent 0deg,transparent 30deg,#fff 70deg,#5A8DFF 105deg,transparent 150deg,transparent 360deg);will-change:transform;
   -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));
-  filter:drop-shadow(0 0 16px #8DB4FF);animation:spin 10s linear infinite}
+  animation:rot 10s linear infinite}
 .planet .halo{position:absolute;left:12%;right:12%;top:-14%;height:60%;background:radial-gradient(50% 50% at 50% 70%,rgba(110,160,255,.55),transparent 70%);animation:breathe 6s ease-in-out infinite}
-@keyframes spin{to{--a:360deg}}
+@keyframes rot{to{transform:rotate(360deg)}}
 @keyframes breathe{50%{opacity:.55;transform:scale(1.06)}}
 
 /* ---------- Logolar lentasi ---------- */
@@ -227,7 +223,7 @@ h2{font-size:clamp(30px,4.4vw,52px);max-width:20ch}
 @keyframes trade{0%{transform:scaleY(1)}35%{transform:scaleY(.62)}70%{transform:scaleY(1.06)}100%{transform:scaleY(.82)}}
 .viz span:nth-child(3n){--sp:2.1s} .viz span:nth-child(3n+1){--sp:3.1s}
 .trend{position:absolute;inset:-6% 0 0 0;width:100%;height:106%;overflow:visible;pointer-events:none}
-.trend path{fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px #8DB4FF);stroke-dasharray:620;stroke-dashoffset:620}
+.trend path{fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:620;stroke-dashoffset:620}
 .t1.in .trend path{animation:draw 5s var(--ease) 1s infinite}
 @keyframes draw{0%{stroke-dashoffset:620}55%,80%{stroke-dashoffset:0}100%{stroke-dashoffset:-620}}
 .live{position:absolute;top:28px;right:30px;display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font-size:13px;font-weight:700;z-index:2}
@@ -241,7 +237,8 @@ h2{font-size:clamp(30px,4.4vw,52px);max-width:20ch}
 .portrait .frame{position:absolute;inset:0;border-radius:30px;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:linear-gradient(160deg,#1A3B9E,#060C24)}
 .portrait .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
 .portrait .ph-note{position:absolute;inset:0;display:grid;place-items:center;color:#A9B8E0;text-align:center;padding:20px}
-.portrait::before{content:"";position:absolute;inset:-2px;border-radius:32px;z-index:-1;background:conic-gradient(from var(--a),#2F6BFF,#fff,#0B1E5B,#2F6BFF);animation:spin 8s linear infinite;filter:blur(18px);opacity:.55}
+.portrait::before{content:"";position:absolute;inset:-2px;border-radius:32px;z-index:-1;background:radial-gradient(60% 60% at 30% 20%,rgba(255,255,255,.55),transparent 70%),radial-gradient(60% 60% at 80% 90%,rgba(47,107,255,.8),transparent 70%);filter:blur(18px);opacity:.6;animation:glowpulse 5s ease-in-out infinite}
+@keyframes glowpulse{50%{opacity:.35;transform:scale(1.03)}}
 .chip{position:absolute;padding:14px 18px;border-radius:18px;background:#fff;color:var(--navy);box-shadow:0 20px 50px -15px rgba(0,0,0,.6);animation:float 6s ease-in-out infinite}
 .chip strong{font-family:"Unbounded";font-size:24px;font-weight:500;display:block;line-height:1.1}
 .chip span{font-size:13px;color:#5A6890;font-weight:600}
@@ -330,7 +327,7 @@ footer a:hover{color:#fff}
 </head>
 <body data-scene="hero">
 
-<div class="bg" aria-hidden="true"><div class="drift" id="drift"><div class="roam r2"><div class="orb b"></div></div><div class="roam r1"><div class="orb a"></div></div><div class="roam r3"><div class="orb c"></div></div><div class="aurora"></div></div></div>
+<div class="bg" aria-hidden="true"><div class="drift" id="drift"><div class="roam r2"><div class="orb b"></div></div><div class="roam r1"><div class="orb a"></div></div><div class="roam r3"><div class="orb c"></div></div></div></div>
 <div class="grid" aria-hidden="true"></div>
 <div class="spot" aria-hidden="true"></div>
 
@@ -607,9 +604,9 @@ $('#projects').innerHTML = PROJECTS.map((p,i) => `
 /* Silliq skroll (Lenis) */
 let lenis = null;
 if (window.Lenis && !reduce){
-  lenis = new Lenis({ lerp:.07, smoothWheel:true, wheelMultiplier:.9 });
+  lenis = new Lenis({ lerp:.1, smoothWheel:true, wheelMultiplier:1.15 });
 }
-const goTo = (target, offset = -90) => lenis ? lenis.scrollTo(target, {offset, duration:2.4, easing:t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2}) : target.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+const goTo = (target, offset = -90) => lenis ? lenis.scrollTo(target, {offset, duration:1.6, easing:t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2}) : target.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
 document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
   const t = document.querySelector(a.getAttribute('href'));
   if (!t) return; e.preventDefault(); goTo(t);
@@ -677,7 +674,9 @@ function frame(t){
   if (y < lastY - 2) nav.classList.remove('hide');
   lastY = y;
 
-  if (!reduce){
+  if (!reduce && y !== frame.lastY){
+    frame.lastY = y;
+    const meRect = (me && me.isConnected) ? me.parentElement.getBoundingClientRect() : null;
     if (y < vh * 1.2){
       const p = y / vh;
       heroIn.style.transform = `translate3d(0,${y * .25}px,0)`;
@@ -685,11 +684,10 @@ function frame(t){
       planet.style.transform = `translate3d(0,${y * -.12}px,0) scale(${1 + p * .15})`;
     }
     drift.style.transform = `translate3d(0,${(y * -.04) % 200}px,0)`;
-    if (me && me.isConnected){
-      const r = me.parentElement.getBoundingClientRect();
-      if (r.bottom > 0 && r.top < vh) me.style.transform = `translate3d(0,${(r.top - vh / 2) * -.06}px,0) scale(1.12)`;
-    }
-    if (fine){
+    if (meRect && meRect.bottom > 0 && meRect.top < vh) me.style.transform = `translate3d(0,${(meRect.top - vh / 2) * -.06}px,0) scale(1.12)`;
+  }
+  if (!reduce){
+    if (fine && Math.abs(mx - sx) + Math.abs(my - sy) > .5){
       sx += (mx - sx) * .12; sy += (my - sy) * .12;
       spot.style.transform = `translate3d(${sx}px,${sy}px,0)`;
     }
