@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Devionyx — Xorazmdagi bizneslar uchun SMM agentlik</title>
+<meta name="description" content="Reels, kontent strategiya va target reklama bir joyda. Bepul konsultatsiyaga yoziling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* rang o'zgaruvchilari silliq almashishi uchun */
+@property --base{syntax:"<color>";inherits:true;initial-value:#03060F}
+@property --c1{syntax:"<color>";inherits:true;initial-value:#2F6BFF}
+@property --c2{syntax:"<color>";inherits:true;initial-value:#0B1E5B}
+@property --c3{syntax:"<color>";inherits:true;initial-value:#FFFFFF}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+
+:root{
+  --navy:#0B1E5B;
+  --blue:#2F6BFF;
+  --sky:#7FB2FF;
+  --white:#FFFFFF;
+  --ice:#E8EEFF;
+  --mute:#8E9BC0;
+  --line:rgba(150,180,255,.14);
+  --card:rgba(12,24,64,.5);
+  --ease:cubic-bezier(.16,1,.3,1);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{background:var(--base);color:var(--ice);font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  transition:--base 1.4s ease,--c1 1.4s ease,--c2 1.4s ease,--c3 1.4s ease}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:6px}
+
+/* ---------- Jonli fon: ko'k, oq, to'q ko'k ---------- */
+.bg{position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--base)}
+.orb{position:absolute;left:0;top:0;border-radius:50%;will-change:transform;transition:transform 1.8s var(--ease)}
+.orb.a{width:80vmax;height:80vmax;margin:-40vmax;background:radial-gradient(circle,var(--c1) 0%,transparent 62%);opacity:.5}
+.orb.b{width:90vmax;height:90vmax;margin:-45vmax;background:radial-gradient(circle,var(--c2) 0%,transparent 65%);opacity:.9}
+.orb.c{width:34vmax;height:34vmax;margin:-17vmax;background:radial-gradient(circle,#F2F6FF 0%,#7FA6FF 16%,rgba(47,107,255,.4) 36%,transparent 62%);opacity:.55}
+.drift{position:absolute;inset:0;will-change:transform}
+.grid{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;-webkit-mask-image:radial-gradient(70% 60% at 50% 30%,#000 10%,transparent 75%);mask-image:radial-gradient(70% 60% at 50% 30%,#000 10%,transparent 75%);opacity:.3}
+.spot{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px;border-radius:50%;pointer-events:none;z-index:-1;
+  background:radial-gradient(circle,rgba(170,205,255,.12),transparent 65%);transform:translate3d(-999px,-999px,0);will-change:transform}
+
+/* sahnalar */
+body[data-scene="hero"]    {--base:#03060F;--c1:#2F6BFF;--c2:#0B1E5B;--c3:#FFFFFF}
+body[data-scene="hero"] .a{transform:translate(50vw,95vh)}  body[data-scene="hero"] .b{transform:translate(12vw,15vh)}  body[data-scene="hero"] .c{transform:translate(85vw,25vh)}
+body[data-scene="pain"]    {--base:#050B22;--c1:#1D3FD0;--c2:#081646;--c3:#BFD6FF}
+body[data-scene="pain"] .a{transform:translate(8vw,65vh)}  body[data-scene="pain"] .b{transform:translate(85vw,15vh)}  body[data-scene="pain"] .c{transform:translate(70vw,85vh)}
+body[data-scene="values"]  {--base:#03060F;--c1:#3D7BFF;--c2:#0E2470;--c3:#FFFFFF}
+body[data-scene="values"] .a{transform:translate(92vw,40vh)}  body[data-scene="values"] .b{transform:translate(15vw,85vh)}  body[data-scene="values"] .c{transform:translate(30vw,12vh)}
+body[data-scene="about"]   {--base:#061033;--c1:#5C8DFF;--c2:#0B1E5B;--c3:#FFFFFF}
+body[data-scene="about"] .a{transform:translate(22vw,35vh)}  body[data-scene="about"] .b{transform:translate(88vw,80vh)}  body[data-scene="about"] .c{transform:translate(60vw,50vh)}
+body[data-scene="why"]     {--base:#03060F;--c1:#2F6BFF;--c2:#0A1A50;--c3:#DCE8FF}
+body[data-scene="why"] .a{transform:translate(50vw,10vh)}  body[data-scene="why"] .b{transform:translate(5vw,90vh)}  body[data-scene="why"] .c{transform:translate(95vw,65vh)}
+body[data-scene="steps"]   {--base:#050B22;--c1:#2457F0;--c2:#0B1E5B;--c3:#FFFFFF}
+body[data-scene="steps"] .a{transform:translate(80vw,85vh)}  body[data-scene="steps"] .b{transform:translate(20vw,25vh)}  body[data-scene="steps"] .c{transform:translate(50vw,50vh)}
+body[data-scene="form"]    {--base:#040A1E;--c1:#2F6BFF;--c2:#0D2366;--c3:#FFFFFF}
+body[data-scene="form"] .a{transform:translate(70vw,55vh)}  body[data-scene="form"] .b{transform:translate(10vw,10vh)}  body[data-scene="form"] .c{transform:translate(85vw,85vh)}
+
+/* ---------- Umumiy ---------- */
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+section{padding:120px 0;position:relative}
+h1,h2,h3{font-family:"Unbounded",sans-serif;font-weight:500;letter-spacing:-.02em;line-height:1.12}
+h2{font-size:clamp(30px,4.4vw,52px);max-width:20ch}
+.lead{color:var(--mute);font-size:18px;max-width:56ch;margin-top:18px}
+.head{margin-bottom:56px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:700;font-size:16px;border:1px solid transparent;cursor:pointer;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),background .3s}
+.btn.primary{background:linear-gradient(180deg,#5A8DFF,var(--blue));color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.18) inset,0 10px 40px -8px rgba(47,107,255,.8)}
+.btn.primary:hover{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(255,255,255,.3) inset,0 18px 50px -6px rgba(90,141,255,.95)}
+.btn.white{background:#fff;color:var(--navy);box-shadow:0 10px 40px -10px rgba(255,255,255,.5)}
+.btn.white:hover{transform:translateY(-3px)}
+.btn.ghost{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.18);color:var(--ice)}
+.btn.ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+
+/* chiqish animatsiyasi (faqat transform/opacity: silliq ishlashi uchun) */
+.rv{opacity:0;transform:translate3d(0,40px,0);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease);transition-delay:calc(var(--d,0) * 100ms)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- Nav ---------- */
+.nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;padding:16px 0;transition:background .5s,border-color .5s,transform .6s var(--ease);border-bottom:1px solid transparent}
+.nav.solid{background:rgba(3,6,15,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-color:var(--line)}
+.nav.hide{transform:translateY(-110%)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-family:"Unbounded";font-weight:700;font-size:19px;letter-spacing:.02em;display:flex;align-items:center;gap:8px}
+.logo i{width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 12px #fff,0 0 30px var(--blue);animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.4);opacity:.7}}
+.links{display:flex;gap:30px;font-size:15px;color:var(--mute)}
+.links a{transition:color .3s}
+.links a:hover{color:#fff}
+.nav .btn{padding:10px 20px;font-size:14px}
+
+/* ---------- Hero ---------- */
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 0 0;overflow:hidden}
+.hero-in{will-change:transform,opacity}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(11,30,91,.5);font-size:14px;color:#C7D4F5}
+.badge b{background:#fff;color:var(--navy);padding:3px 11px;border-radius:999px;font-weight:700}
+.hero h1{font-size:clamp(38px,6.6vw,84px);margin:26px auto 0;max-width:15ch}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .ln span{display:inline-block;transform:translate3d(0,110%,0);animation:up 1.3s var(--ease) forwards}
+.hero h1 .ln:nth-child(2) span{animation-delay:.14s;background:linear-gradient(90deg,#fff 0%,#B9D2FF 40%,#4F86FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes up{to{transform:none}}
+.hero .lead{margin:24px auto 0;text-align:center}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+.fade-in{opacity:0;animation:fi 1.2s .55s var(--ease) forwards}
+@keyframes fi{from{opacity:0;transform:translate3d(0,16px,0)}to{opacity:1;transform:none}}
+
+.planet{position:relative;width:min(1100px,150vw);aspect-ratio:2/1;margin-top:60px;margin-bottom:-24vw;pointer-events:none;will-change:transform}
+.planet .disc{position:absolute;inset:0;border-radius:50% 50% 0 0/100% 100% 0 0;overflow:hidden}
+.planet .disc::before{content:"";position:absolute;left:0;right:0;top:0;height:200%;border-radius:50%;
+  background:radial-gradient(60% 50% at 50% 50%,#0B1E5B 55%,#040A20 100%);
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.75),inset 0 40px 90px -20px rgba(90,141,255,.7)}
+.planet .rim{position:absolute;left:0;right:0;top:0;height:200%;border-radius:50%;
+  background:conic-gradient(from var(--a),transparent 0deg,transparent 30deg,#fff 70deg,#5A8DFF 105deg,transparent 150deg,transparent 360deg);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));
+  filter:drop-shadow(0 0 16px #8DB4FF);animation:spin 10s linear infinite}
+.planet .halo{position:absolute;left:12%;right:12%;top:-14%;height:60%;background:radial-gradient(50% 50% at 50% 70%,rgba(110,160,255,.55),transparent 70%);animation:breathe 6s ease-in-out infinite}
+@keyframes spin{to{--a:360deg}}
+@keyframes breathe{50%{opacity:.55;transform:scale(1.06)}}
+
+/* ---------- Logolar lentasi ---------- */
+.clients{position:relative;z-index:2;padding:0 0 30px}
+.band{background:#fff;color:var(--navy);border-radius:28px;padding:30px 0 26px;overflow:hidden;box-shadow:0 30px 90px -30px rgba(90,141,255,.6)}
+.band-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:0 30px 22px;flex-wrap:wrap}
+.band-top p{font-weight:700;font-size:15px;color:#3B4A78}
+.band-top p strong{color:var(--navy)}
+.band .btn.primary{padding:11px 20px;font-size:14.5px}
+.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;width:max-content;animation:ltr var(--dur,40s) linear infinite;will-change:transform}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes ltr{from{transform:translate3d(-50%,0,0)}to{transform:translate3d(0,0,0)}}
+.logo-item{flex:none;display:flex;align-items:center;gap:14px;height:76px;padding:0 22px;margin:0 10px;border-radius:18px;border:1px solid #E3EAFB;background:#F5F8FF;cursor:pointer;transition:transform .5s var(--ease),border-color .3s,background .3s}
+.logo-item:hover{transform:translateY(-4px);border-color:#9DBBFF;background:#fff}
+.logo-item img{height:44px;width:auto;max-width:130px;object-fit:contain}
+.logo-item .lt{font-family:"Unbounded";font-weight:500;font-size:16px;white-space:nowrap;display:block;line-height:1.2}
+.logo-item .lc{font-size:12.5px;color:#6B7AA6;display:block;font-family:"Manrope"}
+
+/* to'liq loyihalar paneli */
+.allwrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows 1s var(--ease)}
+.allwrap.open{grid-template-rows:1fr}
+.allwrap>div{overflow:hidden}
+.all{padding-top:60px}
+.all-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:36px}
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.proj{border-radius:24px;border:1px solid var(--line);background:var(--card);overflow:hidden;opacity:0;transform:translate3d(0,30px,0);
+  transition:opacity .9s var(--ease),transform .9s var(--ease),border-color .4s,box-shadow .5s;transition-delay:calc(var(--i,0) * 70ms)}
+.allwrap.open .proj{opacity:1;transform:none}
+.proj:hover{border-color:rgba(160,195,255,.5);box-shadow:0 30px 80px -30px rgba(47,107,255,.7)}
+.cover{aspect-ratio:16/10;position:relative;background:linear-gradient(135deg,#16348F,#081232);overflow:hidden}
+.cover>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.proj:hover .cover>img{transform:scale(1.07)}
+.cover .ph-note{position:absolute;inset:0;display:grid;place-items:center;color:#A9B8E0;font-size:14px;text-align:center;padding:20px}
+.cover .clogo{position:absolute;left:16px;bottom:16px;width:56px;height:56px;border-radius:16px;background:#fff;display:grid;place-items:center;overflow:hidden;box-shadow:0 10px 30px -10px rgba(0,0,0,.6);font-family:"Unbounded";font-weight:700;color:var(--navy);font-size:18px}
+.cover .clogo img{width:80%;height:80%;object-fit:contain}
+.tag{position:absolute;top:14px;left:14px;padding:6px 12px;border-radius:999px;background:rgba(3,6,15,.7);border:1px solid var(--line);font-size:13px}
+.proj .body{padding:22px 24px 26px}
+.proj h3{font-size:19px;margin-bottom:8px}
+.proj p{color:var(--mute);font-size:15px}
+.result{display:flex;align-items:baseline;gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.result strong{font-family:"Unbounded";font-size:24px;font-weight:500;color:#fff}
+.result span{color:var(--mute);font-size:14px}
+
+/* ---------- Og'riqlar ---------- */
+.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pain{padding:34px 30px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(25,45,120,.45),rgba(6,12,34,.5));position:relative;overflow:hidden}
+.pain::after{content:"";position:absolute;right:-70px;bottom:-110px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%);transition:transform .9s var(--ease)}
+.pain:hover::after{transform:scale(1.5)}
+.pain h3{font-size:21px;margin-bottom:12px}
+.pain p{color:var(--mute)}
+.pain .ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;margin-bottom:26px;background:#fff}
+
+/* ---------- Qadriyatlar ---------- */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.tile{border-radius:26px;border:1px solid var(--line);background:var(--card);padding:34px;position:relative;overflow:hidden;transition:border-color .4s,transform .7s var(--ease)}
+.tile:hover{border-color:rgba(170,200,255,.45)}
+.tile h3{font-size:22px;margin-bottom:12px;max-width:18ch}
+.tile p{color:var(--mute);max-width:42ch}
+.t1{grid-column:span 4;grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;min-height:460px}
+.t1 h3{font-size:clamp(26px,3vw,38px)}
+.t2,.t3{grid-column:span 2}
+.t4{grid-column:span 3}
+.t5{grid-column:span 3;background:#fff;border-color:#fff}
+.t5 h3{color:var(--navy)} .t5 p{color:#4A5A88}
+.viz{position:absolute;top:34px;right:34px;left:34px;height:40%;display:flex;align-items:flex-end;gap:10px}
+.viz span{flex:1;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#fff,rgba(90,141,255,.15));height:var(--h);transform-origin:bottom;transform:scaleY(0);transition:transform 1.4s var(--ease);transition-delay:calc(var(--i) * 90ms)}
+.t1.in .viz span{transform:scaleY(1)}
+.viz span:nth-child(odd){background:linear-gradient(180deg,#5A8DFF,rgba(47,107,255,.1))}
+
+/* ---------- Men haqimda ---------- */
+.about{display:grid;grid-template-columns:1fr 1.1fr;gap:70px;align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:30px;overflow:visible}
+.portrait .frame{position:absolute;inset:0;border-radius:30px;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:linear-gradient(160deg,#1A3B9E,#060C24)}
+.portrait .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.portrait .ph-note{position:absolute;inset:0;display:grid;place-items:center;color:#A9B8E0;text-align:center;padding:20px}
+.portrait::before{content:"";position:absolute;inset:-2px;border-radius:32px;z-index:-1;background:conic-gradient(from var(--a),#2F6BFF,#fff,#0B1E5B,#2F6BFF);animation:spin 8s linear infinite;filter:blur(18px);opacity:.55}
+.chip{position:absolute;padding:14px 18px;border-radius:18px;background:#fff;color:var(--navy);box-shadow:0 20px 50px -15px rgba(0,0,0,.6);animation:float 6s ease-in-out infinite}
+.chip strong{font-family:"Unbounded";font-size:24px;font-weight:500;display:block;line-height:1.1}
+.chip span{font-size:13px;color:#5A6890;font-weight:600}
+.chip.c1{right:-26px;top:12%}
+.chip.c2{left:-26px;bottom:14%;animation-delay:-3s;background:var(--blue);color:#fff}
+.chip.c2 span{color:#DCE6FF}
+@keyframes float{50%{transform:translate3d(0,-12px,0)}}
+.name{font-size:clamp(32px,4.4vw,54px)}
+.role{color:var(--sky);font-weight:700;margin-top:10px}
+.about .lead{margin-top:22px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px}
+.fact{padding:20px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+.fact strong{font-family:"Unbounded";font-size:28px;font-weight:500;display:block;color:#fff}
+.fact span{color:var(--mute);font-size:14px}
+
+/* ---------- Foiz (oq blok) ---------- */
+.why{border-radius:34px;padding:clamp(34px,6vw,72px);background:#fff;color:var(--navy);display:grid;grid-template-columns:1fr 1.1fr;gap:50px;align-items:center;position:relative;overflow:hidden}
+.why::before{content:"";position:absolute;width:520px;height:520px;left:-160px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(47,107,255,.28),transparent 65%)}
+.why h2{position:relative}
+.why p{color:#3E4C7A;font-size:18px;position:relative}
+.why p + p{margin-top:16px}
+
+/* ---------- Jarayon ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
+.steps::before{content:"";position:absolute;top:27px;left:28px;right:calc(25% - 10px);height:2px;background:linear-gradient(90deg,#fff,var(--blue));transform-origin:left;transform:scaleX(var(--p,0));transition:transform 1.8s var(--ease)}
+.step .n{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-family:"Unbounded";font-size:18px;background:#03060F;border:1px solid rgba(255,255,255,.4);box-shadow:0 0 24px -4px rgba(140,180,255,.7);position:relative;z-index:1;margin-bottom:24px}
+.step h3{font-size:19px;margin-bottom:8px}
+.step p{color:var(--mute);font-size:15.5px}
+
+/* ---------- Forma ---------- */
+.form-wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:60px;align-items:start}
+.perks{margin-top:30px;display:grid;gap:14px}
+.perks div{display:flex;gap:12px;align-items:flex-start;color:#C3CFEE}
+.perks svg{flex:none;margin-top:4px}
+form,.done{border-radius:28px;border:1px solid rgba(160,190,255,.25);background:rgba(6,14,40,.85);padding:clamp(26px,4vw,40px);box-shadow:0 40px 120px -40px rgba(47,107,255,.8)}
+.field{margin-bottom:20px}
+label,.lbl{display:block;font-size:14px;font-weight:600;margin-bottom:8px;color:#D2DBF5}
+input[type=text],input[type=tel]{width:100%;padding:15px 16px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;font:inherit;font-size:16px;transition:border-color .3s,box-shadow .3s}
+input::placeholder{color:#6170A0}
+input:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 4px rgba(127,178,255,.2)}
+.chips{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{margin:0;padding:13px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.04);text-align:center;cursor:pointer;font-weight:600;color:var(--ice);transition:all .35s var(--ease)}
+.chips label:hover{border-color:rgba(170,200,255,.45)}
+.chips input:checked + label{background:#fff;color:var(--navy);border-color:#fff;box-shadow:0 0 30px -6px rgba(255,255,255,.6)}
+.chips input:focus-visible + label{outline:2px solid var(--sky);outline-offset:2px}
+.err{color:#FF8FA0;font-size:13.5px;margin-top:6px}
+form .btn{width:100%;margin-top:8px;font-size:17px;padding:17px}
+form .btn[disabled]{opacity:.6;cursor:wait}
+.small{color:var(--mute);font-size:13.5px;text-align:center;margin-top:14px}
+.done{display:none;text-align:center}
+.done.show{display:block;animation:pop .8s var(--ease)}
+@keyframes pop{from{opacity:0;transform:scale(.94)}}
+.done .ok{width:72px;height:72px;margin:0 auto 22px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:0 0 50px -6px rgba(255,255,255,.6)}
+.done h3{font-size:24px;margin-bottom:10px}
+.done p{color:var(--mute);margin-bottom:26px}
+
+footer{border-top:1px solid var(--line);padding:40px 0 50px;color:var(--mute);font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer nav{display:flex;gap:22px;flex-wrap:wrap}
+footer a:hover{color:#fff}
+
+/* ---------- Moslashuvchanlik ---------- */
+@media (max-width:960px){
+  .links{display:none}
+  .pains,.bento{grid-template-columns:1fr}
+  .projects{grid-template-columns:1fr 1fr}
+  .t1,.t2,.t3,.t4,.t5{grid-column:auto;grid-row:auto}
+  .t1{min-height:380px}
+  .about,.why,.form-wrap{grid-template-columns:1fr;gap:44px}
+  .portrait{max-width:440px;width:100%;margin-inline:auto}
+  .steps{grid-template-columns:1fr 1fr;row-gap:36px}
+  .steps::before{display:none}
+  section{padding:90px 0}
+}
+@media (max-width:600px){
+  .projects{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .nav .btn{display:none}
+  .planet{margin-bottom:-60vw}
+  .facts{grid-template-columns:1fr 1fr}
+  .chip.c1{right:-8px} .chip.c2{left:-8px}
+  .band-top{justify-content:center;text-align:center}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv,.proj{opacity:1!important;transform:none!important}
+  .hero h1 .ln span,.viz span{transform:none}
+  .fade-in{opacity:1}
+}
+</style>
+</head>
+<body data-scene="hero">
+
+<div class="bg" aria-hidden="true"><div class="drift" id="drift"><div class="orb b"></div><div class="orb a"></div><div class="orb c"></div></div></div>
+<div class="grid" aria-hidden="true"></div>
+<div class="spot" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Devionyx bosh sahifa">DEVIONYX<i></i></a>
+    <nav class="links" aria-label="Asosiy menyu">
+      <a href="#mijozlar">Loyihalar</a>
+      <a href="#qadriyatlar">Qanday ishlaymiz</a>
+      <a href="#men">Men haqimda</a>
+      <a href="#jarayon">Jarayon</a>
+    </nav>
+    <a href="#ariza" class="btn primary">Konsultatsiya</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero" data-scene="hero">
+  <div class="wrap hero-in" id="heroIn">
+    <div class="badge fade-in"><b>Xorazm</b> Urganchdagi bizneslar uchun SMM agentlik</div>
+    <h1><span class="ln"><span>Instagram sizga</span></span><span class="ln"><span>mijoz olib kelsin</span></span></h1>
+    <p class="lead fade-in">Reels, kontent strategiya va target reklamani bir joyda boshqaramiz. Siz biznes bilan shug'ullanasiz, marketing esa bizning zimmamizda.</p>
+    <div class="cta-row fade-in">
+      <a href="#ariza" class="btn primary">Bepul konsultatsiya olish</a>
+      <a href="#mijozlar" class="btn ghost">Loyihalarni ko'rish</a>
+    </div>
+  </div>
+  <div class="planet" id="planet" aria-hidden="true"><div class="halo"></div><div class="disc"></div><div class="rim"></div></div>
+</section>
+
+<!-- LOGOLAR LENTASI + TO'LIQ LOYIHALAR -->
+<div class="clients" id="mijozlar" data-scene="hero">
+  <div class="wrap">
+    <div class="band rv">
+      <div class="band-top">
+        <p><strong>10+ loyiha.</strong> Biz bilan ishlagan bizneslar</p>
+        <button class="btn primary" id="allBtn" aria-expanded="false" aria-controls="allProjects">Hammasini ko'rish</button>
+      </div>
+      <div class="marquee"><div class="track" id="track"></div></div>
+    </div>
+
+    <div class="allwrap" id="allProjects">
+      <div>
+        <div class="all">
+          <div class="all-head">
+            <div><h2>Ishlagan loyihalarimiz</h2><p class="lead">Mijozlarimiz ruxsat bergan loyihalar va ularning natijalari.</p></div>
+            <button class="btn ghost" id="closeBtn">Yopish</button>
+          </div>
+          <div class="projects" id="projects"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section data-scene="pain">
+  <div class="wrap">
+    <div class="head rv"><h2>Sizni nima to'xtatyapti, bilamiz</h2></div>
+    <div class="pains">
+      <article class="pain rv">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B1E5B" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Vaqt yetmaydi</h3>
+        <p>Biznesni yuritasizmi yoki post o'ylaysizmi? Ikkalasiga birdan vaqt topilmaydi, Instagram esa bo'sh qolib ketadi.</p>
+      </article>
+      <article class="pain rv" style="--d:1">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B1E5B" stroke-width="2.2" stroke-linecap="round"><path d="M3 7l6 6 4-4 8 8"/><path d="M21 11v6h-6"/></svg></div>
+        <h3>Reklama pul yeydi</h3>
+        <p>Target qo'yildi, pul ketdi, lekin qo'ng'iroq kelmadi. Qayerda xato bo'lganini hech kim tushuntirib bermadi.</p>
+      </article>
+      <article class="pain rv" style="--d:2">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B1E5B" stroke-width="2.2" stroke-linecap="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Ishonch qolmagan</h3>
+        <p>Oldingi SMMchi ko'p va'da berdi, natija bermadi. Endi har bir agentlikka shubha bilan qaraysiz. Tushunamiz.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="qadriyatlar" data-scene="values">
+  <div class="wrap">
+    <div class="head rv">
+      <h2>Qanday ishlaymiz</h2>
+      <p class="lead">Bizda chiroyli so'zlar emas, aniq tamoyillar bor. Har biri sizning pulingiz va vaqtingizni asrash uchun.</p>
+    </div>
+    <div class="bento">
+      <div class="tile t1 rv">
+        <div class="viz" aria-hidden="true">
+          <span style="--h:28%;--i:0"></span><span style="--h:40%;--i:1"></span><span style="--h:34%;--i:2"></span><span style="--h:55%;--i:3"></span><span style="--h:48%;--i:4"></span><span style="--h:70%;--i:5"></span><span style="--h:66%;--i:6"></span><span style="--h:88%;--i:7"></span><span style="--h:100%;--i:8"></span>
+        </div>
+        <h3>Chiroyli emas, sotadigan kontent</h3>
+        <p>Har bir reels va post bitta savolga javob beradi: bu sizga mijoz olib keladimi? Javob "yo'q" bo'lsa, uni qilmaymiz.</p>
+      </div>
+      <div class="tile t2 rv" style="--d:1"><h3>Har ish o'z ustasida</h3><p>Ssenariy, syomka, montaj va target alohida mutaxassis qo'lida.</p></div>
+      <div class="tile t3 rv" style="--d:2"><h3>Professional reels</h3><p>Biznesingizni o'z muhitida ko'rsatamiz: oshxonada, sexda, salonda.</p></div>
+      <div class="tile t4 rv"><h3>Har kim bilan ishlamaymiz</h3><p>Strategiyamiz sizga to'g'ri kelmasa, rostini aytamiz. Bir hamkorlikni aynan shu sabab to'xtatganmiz, chunki natija bermaydigan ishga imzo chekmaymiz.</p></div>
+      <div class="tile t5 rv" style="--d:1"><h3>To'liq boshqaruv, "pod klyuch"</h3><p>Kontent reja, syomka, reklama, oylik hisobot. Siz faqat raqamlarni ko'rasiz va qaror qabul qilasiz.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MEN HAQIMDA: ma'lumotlarni o'zingiznikiga almashtiring -->
+<section id="men" data-scene="about">
+  <div class="wrap about">
+    <div class="portrait rv">
+      <div class="frame"><div class="ph-note">Rasmingiz<br>images/men.jpg</div><img id="me" src="images/men.jpg" alt="Devionyx asoschisi" onerror="this.remove()"></div>
+      <div class="chip c1"><strong>1 yil</strong><span>mediada tajriba</span></div>
+      <div class="chip c2"><strong>10+</strong><span>loyiha</span></div>
+    </div>
+    <div>
+      <div class="rv" style="--d:1">
+        <h2 class="name">Ism Familiya</h2>
+        <p class="role">Devionyx asoschisi, SMM strateg</p>
+        <p class="lead">Bir yildan beri media sohasida ishlayman va shu vaqt ichida 10 dan ortiq biznesning Instagramini qurishda qatnashdim. Xorazm bozorini ichidan bilaman: bu yerda mijoz qanday o'ylashini, nimaga ishonishini va nimadan qochishini.</p>
+      </div>
+      <div class="facts">
+        <div class="fact rv" style="--d:2"><strong data-count="1" data-suffix=" yil">0</strong><span>media tajriba</span></div>
+        <div class="fact rv" style="--d:3"><strong data-count="10" data-suffix="+">0</strong><span>bajarilgan loyiha</span></div>
+        <div class="fact rv" style="--d:4"><strong data-count="4">0</strong><span>yo'nalish bitta jamoada</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-scene="why">
+  <div class="wrap">
+    <div class="why rv">
+      <h2>Nega foizga ishlamaymiz?</h2>
+      <div>
+        <p>Marketing mijozni eshigingizgacha olib keladi. Uni sotib olishga ko'ndirish esa sotuv bo'limining ishi. Bular ikki xil vazifa.</p>
+        <p>Sotuv tizimi to'liq yo'lga qo'yilmagan biznesda foiz asosida ishlash ikkala tomonni ham qiynaydi. Shuning uchun aniq ish hajmi va aniq narx bilan ishlaymiz, natijani esa har oy raqamlarda ko'rsatamiz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="jarayon" data-scene="steps">
+  <div class="wrap">
+    <div class="head rv"><h2>Birinchi qo'ng'iroqdan natijagacha</h2></div>
+    <div class="steps" id="steps">
+      <div class="step rv"><div class="n">1</div><h3>Bepul konsultatsiya</h3><p>30 daqiqada biznesingiz va hozirgi Instagram holatini tahlil qilamiz.</p></div>
+      <div class="step rv" style="--d:1"><div class="n">2</div><h3>Strategiya</h3><p>Kontent reja va reklama rejasini aniq raqamlar bilan tuzamiz.</p></div>
+      <div class="step rv" style="--d:2"><div class="n">3</div><h3>Ishga tushirish</h3><p>Syomka, montaj, nashr va target. Hammasini o'zimiz boshqaramiz.</p></div>
+      <div class="step rv" style="--d:3"><div class="n">4</div><h3>Oylik hisobot</h3><p>Nima ishladi, nima ishlamadi, keyingi oy nima qilamiz.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="ariza" data-scene="form">
+  <div class="wrap form-wrap">
+    <div class="rv">
+      <h2>Biznesingizni gaplashamiz</h2>
+      <p class="lead">Formani to'ldiring, 24 soat ichida qo'ng'iroq qilamiz. Konsultatsiya bepul va sizni hech narsaga majburlamaydi.</p>
+      <div class="perks">
+        <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg>Instagram profilingizning bepul tahlili</div>
+        <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg>Raqobatchilaringiz nima qilayotgani haqida qisqa xulosa</div>
+        <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg>Byudjetingizga mos aniq reja</div>
+      </div>
+    </div>
+    <div class="rv" style="--d:1">
+      <form id="leadForm" novalidate>
+        <div class="field">
+          <label for="name">Ismingiz</label>
+          <input type="text" id="name" name="name" placeholder="Masalan: Sardor" autocomplete="name">
+          <div class="err" data-for="name"></div>
+        </div>
+        <div class="field">
+          <label for="business">Biznesingiz yo'nalishi</label>
+          <input type="text" id="business" name="business" placeholder="Masalan: restoran, salon, do'kon">
+          <div class="err" data-for="business"></div>
+        </div>
+        <div class="field" role="radiogroup" aria-labelledby="budgetLbl">
+          <span class="lbl" id="budgetLbl">Marketingga oyiga qancha ajratmoqchisiz?</span>
+          <div class="chips">
+            <input type="radio" name="budget" id="b1" value="3 mln gacha"><label for="b1">3 mln gacha</label>
+            <input type="radio" name="budget" id="b2" value="3–7 mln"><label for="b2">3–7 mln</label>
+            <input type="radio" name="budget" id="b3" value="7–15 mln"><label for="b3">7–15 mln</label>
+            <input type="radio" name="budget" id="b4" value="15 mln+"><label for="b4">15 mln dan ko'p</label>
+          </div>
+          <div class="err" data-for="budget"></div>
+        </div>
+        <div class="field">
+          <label for="phone">Telefon raqamingiz</label>
+          <input type="tel" id="phone" name="phone" placeholder="+998 __ ___ __ __" autocomplete="tel" inputmode="tel">
+          <div class="err" data-for="phone"></div>
+        </div>
+        <button class="btn primary" type="submit" id="submitBtn">Konsultatsiyaga yozilish</button>
+        <p class="small">Raqamingiz faqat siz bilan bog'lanish uchun ishlatiladi.</p>
+      </form>
+      <div class="done" id="done" role="status" aria-live="polite">
+        <div class="ok"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2F6BFF" stroke-width="2.6" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg></div>
+        <h3 id="doneTitle">Rahmat! Arizangiz qabul qilindi</h3>
+        <p>24 soat ichida qo'ng'iroq qilamiz. Ungacha Telegram kanalimizda real keyslarimizni ko'rib chiqing.</p>
+        <a class="btn white" id="tgBtn" href="#" target="_blank" rel="noopener">Telegram kanalga o'tish</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="logo">DEVIONYX<i></i></a>
+    <nav aria-label="Ijtimoiy tarmoqlar">
+      <a href="https://instagram.com/devionyx" target="_blank" rel="noopener">Instagram</a>
+      <a id="tgFoot" href="#" target="_blank" rel="noopener">Telegram</a>
+      <a href="tel:+998000000000">+998 00 000 00 00</a>
+    </nav>
+    <span>Urganch, Xorazm</span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+/* =================== SOZLAMALAR =================== */
+const SCRIPT_URL   = "";                          // Google Apps Script "Web app" havolasi
+const TELEGRAM_URL = "https://t.me/devionyx";     // Telegram kanalingiz
+
+/* LOYIHALAR: har bir loyiha uchun bitta qator.
+   logo  -> images/logos/ papkasidagi logo fayli
+   cover -> images/ papkasidagi loyiha rasmi                                  */
+const PROJECTS = [
+  { name:"Loyiha 1", category:"Restoran",        logo:"images/logos/logo-1.png", cover:"images/loyiha-1.jpg", did:"Nima qilganingizni 1-2 gapda yozing.", result:"+__%", resultLabel:"murojaatlar" },
+  { name:"Loyiha 2", category:"Go'zallik saloni", logo:"images/logos/logo-2.png", cover:"images/loyiha-2.jpg", did:"Nima qilganingizni 1-2 gapda yozing.", result:"__ ta", resultLabel:"yangi mijoz" },
+  { name:"Loyiha 3", category:"Savdo",           logo:"images/logos/logo-3.png", cover:"images/loyiha-3.jpg", did:"Nima qilganingizni 1-2 gapda yozing.", result:"__", resultLabel:"natija" },
+  { name:"Loyiha 4", category:"Ta'lim",          logo:"images/logos/logo-4.png", cover:"images/loyiha-4.jpg", did:"Nima qilganingizni 1-2 gapda yozing.", result:"__", resultLabel:"natija" },
+  { name:"Loyiha 5", category:"Klinika",         logo:"images/logos/logo-5.png", cover:"images/loyiha-5.jpg", did:"Nima qilganingizni 1-2 gapda yozing.", result:"__", resultLabel:"natija" },
+  { name:"Loyiha 6", category:"Qurilish",        logo:"images/logos/logo-6.png", cover:"images/loyiha-6.jpg", did:"Nima qilganingizni 1-2 gapda yozing.", result:"__", resultLabel:"natija" }
+];
+/* ================================================== */
+
+const $ = s => document.querySelector(s);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+$('#tgBtn').href = TELEGRAM_URL; $('#tgFoot').href = TELEGRAM_URL;
+
+/* Logo topilmasa nomining bosh harfi chiqadi */
+window.logoFail = (img, txt, cls) => { const s = document.createElement('span'); s.className = cls; s.textContent = txt; img.replaceWith(s); };
+
+/* Lenta: chapdan o'ngga harakatlanadi */
+const item = p => `<div class="logo-item" role="button" tabindex="0" data-open>
+  <img src="${esc(p.logo)}" alt="${esc(p.name)} logosi" onerror="this.remove()">
+  <div><span class="lt">${esc(p.name)}</span><span class="lc">${esc(p.category)}</span></div></div>`;
+const once = PROJECTS.map(item).join('');
+const track = $('#track');
+const fillTrack = () => {
+  track.innerHTML = once;
+  const setW = track.scrollWidth || 1, need = track.parentElement.clientWidth + 100;
+  const n = Math.max(1, Math.ceil(need / setW));
+  track.innerHTML = once.repeat(n * 2);
+  track.style.setProperty('--dur', Math.round(setW * n / 45) + 's');  /* ~45px/soniya tezlik */
+};
+fillTrack();
+addEventListener('load', fillTrack);
+let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(fillTrack, 200); });
+
+/* To'liq loyihalar kartochkalari */
+$('#projects').innerHTML = PROJECTS.map((p,i) => `
+  <article class="proj" style="--i:${i}">
+    <div class="cover">
+      <div class="ph-note">${esc(p.cover)}</div>
+      <img src="${esc(p.cover)}" alt="${esc(p.name)} loyihasi" onerror="this.remove()">
+      <span class="tag">${esc(p.category)}</span>
+      <div class="clogo"><img src="${esc(p.logo)}" alt="" onerror="logoFail(this,'${esc(p.name).charAt(0)}','')"></div>
+    </div>
+    <div class="body">
+      <h3>${esc(p.name)}</h3>
+      <p>${esc(p.did)}</p>
+      <div class="result"><strong>${esc(p.result)}</strong><span>${esc(p.resultLabel)}</span></div>
+    </div>
+  </article>`).join('');
+
+/* Silliq skroll (Lenis) */
+let lenis = null;
+if (window.Lenis && !reduce){
+  lenis = new Lenis({ lerp:.085, smoothWheel:true, wheelMultiplier:1 });
+}
+const goTo = (target, offset = -90) => lenis ? lenis.scrollTo(target, {offset, duration:1.4}) : target.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const t = document.querySelector(a.getAttribute('href'));
+  if (!t) return; e.preventDefault(); goTo(t);
+}));
+
+/* Hammasini ko'rish / yopish */
+const allWrap = $('#allProjects'), allBtn = $('#allBtn');
+const setOpen = open => {
+  allWrap.classList.toggle('open', open);
+  allBtn.setAttribute('aria-expanded', open);
+  allBtn.textContent = open ? 'Yashirish' : "Hammasini ko'rish";
+  setTimeout(() => { lenis && lenis.resize(); if (open) goTo(allWrap, -70); }, open ? 120 : 0);
+  if (!open) setTimeout(() => goTo($('#mijozlar'), -100), 50);
+};
+allBtn.addEventListener('click', () => setOpen(!allWrap.classList.contains('open')));
+$('#closeBtn').addEventListener('click', () => setOpen(false));
+track.addEventListener('click', e => { if (e.target.closest('[data-open]')) setOpen(true); });
+track.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('[data-open]')){ e.preventDefault(); setOpen(true); } });
+allWrap.addEventListener('transitionend', () => lenis && lenis.resize());
+
+/* Chiqish animatsiyalari */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+}), {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+/* Fon sahnasi */
+const sceneIO = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) document.body.dataset.scene = e.target.dataset.scene;
+}), {rootMargin:'-45% 0px -45% 0px'});
+document.querySelectorAll('main [data-scene]').forEach(s => sceneIO.observe(s));
+
+/* Jarayon chizig'i */
+const steps = $('#steps');
+new IntersectionObserver(([e]) => { if (e.isIntersecting) steps.style.setProperty('--p', 1); }, {threshold:.4}).observe(steps);
+
+/* Raqamlar sanog'i */
+const countIO = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const el = e.target, to = +el.dataset.count, suf = el.dataset.suffix || '';
+  countIO.unobserve(el);
+  if (reduce){ el.textContent = to + suf; return; }
+  const t0 = performance.now(), dur = 1500;
+  const tick = t => { const p = Math.min((t - t0) / dur, 1); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 4))) + suf; if (p < 1) requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+}), {threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el => countIO.observe(el));
+
+/* Nav: pastga aylantirganda yashirinadi, tepaga qaytganda chiqadi */
+const nav = $('#nav'); let lastY = 0;
+
+/* Bitta animatsiya sikli: skroll, parallaks, sichqoncha yorug'ligi */
+const heroIn = $('#heroIn'), planet = $('#planet'), drift = $('#drift'), spot = $('.spot'), me = $('#me');
+let mx = -999, my = -999, sx = -999, sy = -999;
+const fine = matchMedia('(pointer:fine)').matches;
+if (fine && !reduce) addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; if (sx < -900){ sx = mx; sy = my; } }, {passive:true});
+
+function frame(t){
+  lenis && lenis.raf(t);
+  const y = lenis ? lenis.scroll : scrollY;
+  const vh = innerHeight;
+
+  nav.classList.toggle('solid', y > 30);
+  nav.classList.toggle('hide', y > lastY + 2 && y > vh * .8);
+  if (y < lastY - 2) nav.classList.remove('hide');
+  lastY = y;
+
+  if (!reduce){
+    if (y < vh * 1.2){
+      const p = y / vh;
+      heroIn.style.transform = `translate3d(0,${y * .25}px,0)`;
+      heroIn.style.opacity = Math.max(0, 1 - p * 1.3);
+      planet.style.transform = `translate3d(0,${y * -.12}px,0) scale(${1 + p * .15})`;
+    }
+    drift.style.transform = `translate3d(0,${(y * -.04) % 200}px,0)`;
+    if (me && me.isConnected){
+      const r = me.parentElement.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < vh) me.style.transform = `translate3d(0,${(r.top - vh / 2) * -.06}px,0) scale(1.12)`;
+    }
+    if (fine){
+      sx += (mx - sx) * .12; sy += (my - sy) * .12;
+      spot.style.transform = `translate3d(${sx}px,${sy}px,0)`;
+    }
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+/* Telefon formati */
+const phone = $('#phone');
+phone.addEventListener('focus', () => { if (!phone.value) phone.value = '+998 '; });
+phone.addEventListener('input', () => {
+  let d = phone.value.replace(/\D/g, '');
+  if (!d.startsWith('998')) d = '998' + d;
+  d = d.slice(0, 12);
+  phone.value = '+' + [d.slice(0,3), d.slice(3,5), d.slice(5,8), d.slice(8,10), d.slice(10,12)].filter(Boolean).join(' ');
+});
+
+/* Forma yuborish */
+const form = $('#leadForm');
+const setErr = (k, m) => form.querySelector(`[data-for="${k}"]`).textContent = m;
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const fd = new FormData(form);
+  const data = { name:(fd.get('name')||'').trim(), business:(fd.get('business')||'').trim(), budget:fd.get('budget')||'', phone:(fd.get('phone')||'').trim() };
+  let ok = true;
+  ['name','business','budget','phone'].forEach(k => setErr(k, ''));
+  if (data.name.length < 2){ setErr('name', 'Ismingizni yozing'); ok = false; }
+  if (data.business.length < 2){ setErr('business', "Biznesingiz yo'nalishini yozing"); ok = false; }
+  if (!data.budget){ setErr('budget', 'Byudjet variantlaridan birini tanlang'); ok = false; }
+  if (data.phone.replace(/\D/g,'').length !== 12){ setErr('phone', "Raqamni to'liq kiriting: +998 90 123 45 67"); ok = false; }
+  if (!ok) return;
+  const btn = $('#submitBtn'); btn.disabled = true; btn.textContent = 'Yuborilmoqda...';
+  try {
+    if (SCRIPT_URL) await fetch(SCRIPT_URL, {method:'POST', mode:'no-cors', body:new URLSearchParams(data)});
+    else console.warn("SCRIPT_URL bo'sh: ariza Google Sheets'ga yuborilmadi (sinov rejimi).", data);
+    $('#doneTitle').textContent = `Rahmat, ${data.name}! Arizangiz qabul qilindi`;
+    form.style.display = 'none'; $('#done').classList.add('show');
+    lenis && lenis.resize();
+  } catch(err){
+    setErr('phone', 'Ariza yuborilmadi. Internetni tekshirib, qayta bosing.');
+    btn.disabled = false; btn.textContent = 'Konsultatsiyaga yozilish';
+  }
+});
+</script>
+</body>
+</html>
